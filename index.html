@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NP Software Nutrition Pro v3</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:900px;margin:auto;padding:20px}
+input,select,button{width:100%;padding:10px;margin:5px 0}
+.report{border:1px solid #ccc;padding:15px;margin-top:15px}
+.footer{margin-top:30px;text-align:center;font-weight:bold;color:#555}
+</style>
+</head>
+<body>
+<h1>NP Software Nutrition Pro v3</h1>
+<p>Professional Nutrition Report Generator</p>
+
+<input id="name" placeholder="Name">
+<input id="age" type="number" placeholder="Age">
+<input id="height" type="number" placeholder="Height (cm)">
+<input id="weight" type="number" placeholder="Weight (kg)">
+
+<select id="gender">
+<option>Male</option>
+<option>Female</option>
+</select>
+
+<button onclick="generate()">Calculate & Generate Report</button>
+
+<div id="report" class="report"></div>
+
+<div class="footer">
+Team Nagaraj Poojary<br>
+Powered by NP Software
+</div>
+
+<script>
+function generate(){
+ let name=document.getElementById('name').value || 'User';
+ let age=document.getElementById('age').value;
+ let h=+document.getElementById('height').value;
+ let w=+document.getElementById('weight').value;
+
+ let minProtein=(w*0.8).toFixed(0);
+ let optimalProtein=(w*1.8).toFixed(0);
+ let water=(w*0.04).toFixed(1);
+
+ let report=`
+ <h2>Nutrition Report</h2>
+ <b>Name:</b> ${name}<br>
+ <b>Age:</b> ${age}<br>
+ <b>Height:</b> ${h} cm<br>
+ <b>Weight:</b> ${w} kg<br><hr>
+ <b>Minimum Protein:</b> ${minProtein} g/day<br>
+ <b>Optimal Protein:</b> ${optimalProtein} g/day<br>
+ <b>Water:</b> ${water} L/day<br><br>
+ <b>Vitamin C:</b> 90 mg<br>
+ <b>Vitamin D:</b> 600 IU<br>
+ <b>Calcium:</b> 1000 mg<br>
+ <b>Magnesium:</b> 420 mg<br>
+ <br><b>Nutrition Score:</b> 100%
+ <br><br><button onclick="window.print()">Save Report as PDF</button>
+ <br><br><center><b>Team Nagaraj Poojary</b><br><i>Powered by NP Software</i></center>
+ `;
+
+ document.getElementById('report').innerHTML=report;
+}
+</script>
+</body>
+</html>
